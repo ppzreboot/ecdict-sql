@@ -1,0 +1,12 @@
+{
+  "name": "@ppz-ai/ecdict-pgsql",
+  "version": "0.0.0",
+  "exports": "./mod.ts",
+  "tasks": {
+    "test": "deno test --allow-env --allow-net"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1",
+    "postgres": "npm:postgres@^3.4.7"
+  }
+}
