@@ -29,6 +29,7 @@ function make_ECDICT_PGSQL(
     sql: Postgres.Sql,
     schema_name: string,
     table_name: string,
+    new_line_split = '\n',
 ): I_lookup_from_ECDICT {
     return async function lookup_from_ECDICT(word: string) {
         if (word.length > 100 || word.length === 0)
@@ -38,31 +39,32 @@ function make_ECDICT_PGSQL(
         `
         return format(result[0]) || null // 相信数据库
     }
-}
 
-function format(record: Postgres.Row): I_ecdict {
-    // 相信数据库，不检查值，只格式化值
-    return {
-        word: record.word,
-        phonetic: record.phonetic,
-        definition: _strarr_or_null(record.definition),
-        translation: _strarr_or_null(record.translation),
-        collins: record.collins,
-        oxford: record.oxford === 1,
-        bnc: record.bnc,
-        frq: record.frq,
-        exchange: record.exchange === null
-            ? {}
-            : (
-                Object.fromEntries(
-                    (record.exchange as string)
-                        .split('/')
-                        .map(kv => kv.split(':'))
+    function format(record: Postgres.Row): I_ecdict {
+        // 相信数据库，不检查值，只格式化值
+        return {
+            word: record.word,
+            phonetic: record.phonetic,
+            definition: _strarr_or_null(record.definition),
+            translation: _strarr_or_null(record.translation),
+            collins: record.collins,
+            oxford: record.oxford === 1,
+            bnc: record.bnc,
+            frq: record.frq,
+            exchange: record.exchange === null
+                ? {}
+                : (
+                    Object.fromEntries(
+                        (record.exchange as string)
+                            .split('/')
+                            .map(kv => kv.split(':'))
+                    )
                 )
-            )
+        }
     }
-}
 
-function _strarr_or_null(str: string | null): string[] {
-    return str === null ? [] : str.split('\n') // 相信数据库
+    function _strarr_or_null(str: string | null): string[] {
+        return str === null ? [] : str.split(new_line_split) // 相信数据库
+    }
+
 }
