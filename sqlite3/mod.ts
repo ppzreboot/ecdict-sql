@@ -1,5 +1,5 @@
 import type { Database } from '@db/sqlite'
-import type { I_lookup_from_ECDICT, I_ecdict_raw, I_ecdict, I_exchange_type, I_inflection_type } from '@ppz-ai/ecdict-common'
+import type { I_lookup_from_ECDICT, I_ecdict_raw } from '@ppz-ai/ecdict-common'
 import { format } from '@ppz-ai/ecdict-common'
 
 export
