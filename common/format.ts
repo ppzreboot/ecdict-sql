@@ -58,7 +58,7 @@ function format(record: I_ecdict_raw): I_ecdict {
                 }[t as 'p' | 'd' | 'i' | '3' | 'r' | 't' | 's']) as I_inflection_type),
             }
         ,
-        inflection: record.exchange === null
+        inflection: (record.exchange === null || record.exchange === '')
             ? {} as Record<I_inflection_type, undefined>
             : Object.fromEntries(
                 (record.exchange as string)
