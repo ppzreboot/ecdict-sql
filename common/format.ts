@@ -32,6 +32,12 @@ function format(record: I_ecdict_raw): I_ecdict {
                 .map(kv => kv.split(':'))
         ) as Record<I_exchange_type, string | undefined>
 
+    if (exchange !== null && exchange['0'] !== undefined && exchange['1'] === undefined) {
+        console.error('has a lemma, no inflection type', record.word, record.exchange)
+        // 有的单词有 lemma，但没有 inflection type，比如 `we`
+        exchange[0] = undefined
+    }
+
     // 相信数据库，不检查值，只格式化值
     return {
         word: record.word,

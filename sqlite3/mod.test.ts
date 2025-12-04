@@ -65,6 +65,13 @@ Deno.test('lookup test', async t => {
         assert(result.inflection.did === 'founded')
         assert(result.inflection.done === 'founded')
     })
+
+    await t.step('has lemma, no inflection type', async () => {
+        const result = await lookup('we')
+        assert(result !== null)
+        assert(result.lemma === null)
+    })
+
     await t.step('clean up', () => {
         db.close()
     })

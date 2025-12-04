@@ -1,0 +1,7 @@
+{
+	"workspace": [
+		"./common",
+		"./pgsql",
+		"./sqlite3"
+	]
+}
