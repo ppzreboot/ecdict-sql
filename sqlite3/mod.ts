@@ -2,6 +2,8 @@ import type { Database } from '@db/sqlite'
 import type { I_lookup_from_ECDICT, I_ecdict_raw } from '@ppz-ai/ecdict-common'
 import { format } from '@ppz-ai/ecdict-common'
 
+export * from '@ppz-ai/ecdict-common'
+
 export
 function make_ecdict_sqlite3(db: Database): I_lookup_from_ECDICT {
     const stmt = db.prepare('select * from stardict where word=?')

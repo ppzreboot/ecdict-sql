@@ -1,6 +1,6 @@
 {
   "name": "@ppz-ai/ecdict-sqlite3",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "exports": "./mod.ts",
   "license": "UNLICENSED",
   "publish": {
