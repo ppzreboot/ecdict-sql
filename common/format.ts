@@ -88,5 +88,6 @@ function format(record: I_ecdict_raw): I_ecdict {
 }
 
 function _strarr_or_null(str: string | null): string[] {
-    return str === null ? [] : str.split('\n') // 相信数据库
+    const trim = (str: string) => str.trim()
+    return str === null ? [] : str.split('\n').map(trim).filter(trim) // 相信数据库
 }

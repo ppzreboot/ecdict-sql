@@ -72,6 +72,12 @@ Deno.test('lookup test', async t => {
         assert(result.lemma === null)
     })
 
+    await t.step('no definition', async () => {
+        const result = await lookup('csv')
+        assert(result !== null)
+        assert(result.definition.length === 0)
+    })
+
     await t.step('clean up', () => {
         db.close()
     })

@@ -1,6 +1,6 @@
 {
   "name": "@ppz-ai/ecdict-sqlite3",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "exports": "./mod.ts",
   "license": "UNLICENSED",
   "publish": {
@@ -14,7 +14,7 @@
   },
   "imports": {
     "@db/sqlite": "jsr:@db/sqlite@^0.13.0",
-    "@ppz-ai/ecdict-common": "jsr:@ppz-ai/ecdict-common@^0.3.2",
+    "@ppz-ai/ecdict-common": "jsr:@ppz-ai/ecdict-common@^0.3.4",
     "@std/assert": "jsr:@std/assert@1"
   }
 }
