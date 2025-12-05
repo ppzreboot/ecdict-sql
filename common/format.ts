@@ -70,7 +70,13 @@ function format(record: I_ecdict_raw): I_ecdict {
                 (record.exchange as string)
                     .split('/')
                     .map(kv => kv.split(':'))
-                    .filter(([k]) => k !== '0' && k !== '1')
+                    .filter(([k]) => {
+                        if (['p', 'd', 'i', '3', 'r', 't', 's'].includes(k))
+                            return true
+                        if (k !== '0' && k !== '1')
+                            console.error('invalid inflection type detected', record.word, record.exchange)
+                        return false
+                    })
                     .map(([k, v]) => [
                         {
                             p: 'did',

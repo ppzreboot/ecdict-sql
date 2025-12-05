@@ -77,6 +77,12 @@ Deno.test('lookup test', async t => {
         assert(result !== null)
         assert(result.definition.length === 0)
     })
+    await t.step('allow invalid inflection type', async () => {
+        // 有些词条的 exchange 字段会有无效的 inflection type https://github.com/skywind3000/ECDICT/commit/82c9872576b23118d7c42e920c11beb77f510ae2
+        const result = await lookup('color')
+        assert(result !== null)
+        assert(Object.entries(result.inflection).every(([k]) => k !== 'undefined'))
+    })
 
     await t.step('clean up', () => {
         db.close()
